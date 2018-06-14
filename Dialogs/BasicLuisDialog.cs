@@ -45,10 +45,29 @@ namespace Microsoft.Bot.Sample.LuisBot
             await this.ShowLuisResult(context, result);
         }
 
+        [LuisIntent("Weather.GetForecast")]
+        public async Task HelpIntent(IDialogContext context, LuisResult result)
+        {
+            await this.ShowLuisWeatherResult(context, result);
+        }
+        [LuisIntent("Weather.GetCondition")]
+        public async Task HelpIntent(IDialogContext context, LuisResult result)
+        {
+            await this.ShowLuisWeatherResult(context, result);
+        }
+
         private async Task ShowLuisResult(IDialogContext context, LuisResult result) 
         {
             await context.PostAsync($"You have reached {result.Intents[0].Intent}. You said: {result.Query}");
             context.Wait(MessageReceived);
+        }
+
+        private async Task ShowLuisWeatherResult(IDialogContext context, LuisResult result) 
+        {
+            await context.PostAsync($"Weather intent: {result.Intents[0].Intent}. You said: {result.Query}" +
+                                    $"{result.Entities[0].Entity}  ");
+            
+           context.Wait(MessageReceived);
         }
     }
 }
