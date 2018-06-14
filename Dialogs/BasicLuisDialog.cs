@@ -46,12 +46,12 @@ namespace Microsoft.Bot.Sample.LuisBot
         }
 
         [LuisIntent("Weather.GetForecast")]
-        public async Task HelpIntent(IDialogContext context, LuisResult result)
+        public async Task GetForecastIntent(IDialogContext context, LuisResult result)
         {
             await this.ShowLuisWeatherResult(context, result);
         }
         [LuisIntent("Weather.GetCondition")]
-        public async Task HelpIntent(IDialogContext context, LuisResult result)
+        public async Task GetConditionIntent(IDialogContext context, LuisResult result)
         {
             await this.ShowLuisWeatherResult(context, result);
         }
